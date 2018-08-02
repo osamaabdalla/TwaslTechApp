@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Alert, Modal, TouchableWithoutFeedback} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Alert, Linking, Modal, TouchableWithoutFeedback} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Style from '../stylesheets/styles';
 import MapView from 'react-native-maps';
@@ -208,7 +208,7 @@ export default class Home extends Component<Props> {
             <Image source={require('../images/calendar.png')} style={{width:50,height:50}} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='transparent' title="Medical History" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => {}}>
-            <Image source={require('../images/hajj.png')} style={{width:50,height:50}} />
+            <Image source={require('../images/medical.png')} style={{width:50,height:50}} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='transparent' title="Hospitals" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => {}}>
             <Image source={require('../images/hospitals.png')} style={{width:50,height:50}} />
@@ -237,10 +237,10 @@ export default class Home extends Component<Props> {
               <Text>Khalid Abdulrahman</Text>
             </View>
 
-            <View style={Style.supreVisorRow} >
+            <TouchableOpacity style={Style.supreVisorRow} onPress={()=>{Linking.openURL('tel://966123456789')}} >
               <Image source={require('../images/mobile.png')} style={{width:20,height:20,marginRight:8}} />
-              <Text>+966123456789</Text>
-            </View>
+              <Text style={{color:'red'}} >+966123456789</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity style={Style.supreVisorRow} onPress={()=>{this.sendMessage()}} >
               <Image source={require('../images/message.png')} style={{width:20,height:20,marginRight:8}} />
