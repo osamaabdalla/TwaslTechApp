@@ -81,6 +81,17 @@ const Style = StyleSheet.create({
     color: '#00aced',
     textAlign:'center'
   },
+  TextAreaInput:{
+    width:width/2+70,
+    height:145,
+    marginTop:5,
+    marginBottom:5,
+    borderRadius:5,
+    borderColor:'#b0e5f9',
+    borderWidth:1,
+    color: '#00aced',
+    textAlign:'center'
+  },
   lSLangLogo:{
     width:25,
     height:16,
@@ -115,13 +126,44 @@ const Style = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
   },
+  seminHideButton:{
+    width:width/2,
+    height:45,
+    marginTop:5,
+    backgroundColor:'#00aced',
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  mainHideButton:{
+    width:width,
+    height:45,
+    marginTop:5,
+    position:'absolute',
+    bottom:0,
+    backgroundColor:'#00aced',
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  titlePopButton:{
+    width:width,
+    height:45,
+    marginTop:5,
+    position:'absolute',
+    top:-5,
+    backgroundColor:'#00aced',
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+  },
   actionSheets:{
     width:width/2,
     height:50,
     marginTop:-13,
     marginBottom:0,
     marginLeft:-50,
-    paddingLeft:50,
+    paddingLeft:40,
     borderRadius:25,
     backgroundColor:'#ffffff',
     flexDirection:'row',
@@ -131,7 +173,7 @@ const Style = StyleSheet.create({
   },
   actionSheetTitle:{
     color:'#00aced',
-    fontSize:18,
+    fontSize:16,
     fontFamily:FONTLIGHT,
   },
   map:{
@@ -140,17 +182,29 @@ const Style = StyleSheet.create({
   },
   busModalContainer:{
     width:width-80,
-    height:height/2-40,
+    height:height/2-70,
     top:height/4,
     left:40,
     borderWidth:1,
+    padding:20,
     borderColor:'#00aced',
     flexDirection:'column',
-    justifyContent:'center',
+    justifyContent:'flex-start',
     alignItems:'center',
     backgroundColor:'#ffffff',
     borderRadius:30,
-    overflow:'hidden'
+    overflow:'hidden',
+    paddingTop:70
+  },
+  supreVisorRow:{
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignItems:'center',
+    width:width-120,
+    height:30,
+    flexDirection:'row',
+    justifyContent:'flex-start',
+    alignItems:'center',
   }
   /*
   navigationBarStyle:{

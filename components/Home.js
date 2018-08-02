@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Alert, Modal} from 'react-native';
+import {Platform, StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Alert, Modal, TouchableWithoutFeedback} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Style from '../stylesheets/styles';
 import MapView from 'react-native-maps';
@@ -22,7 +22,9 @@ export default class Home extends Component<Props> {
         latitude: 21.614857,
         longitude: 39.156606,
       },
+      message:'',
       modalVisible: false,
+      modalMessageVisible: false,
       hajjs: [
         {
           name : 'Omar Ali',
@@ -95,6 +97,68 @@ export default class Home extends Component<Props> {
     this.setState({modalVisible: !this.state.modalVisible});
   }
 
+  confimBusChange(){
+    Alert.alert(
+      'Success',
+      '\n Your request has been sent to the Supervisor',
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+    )
+  }
+
+  showRequestResons(){
+    this.setState({modalVisible: !this.state.modalVisible});
+
+    setTimeout(function () {
+      Alert.alert(
+        'Select Change Reason',
+        '\n',
+        [
+          {text: 'I will late', onPress: () => self.confimBusChange()},
+          {text: 'I Lost my way', onPress: () => self.confimBusChange()},
+          {text: 'Emergney issue', onPress: () => self.confimBusChange()},
+          {text: 'I need More time', onPress: () => self.confimBusChange()},
+          {text: 'Cancel Request', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+      )
+    }, 100);
+  }
+
+  sendMessage(){
+    this.setState({modalVisible: !this.state.modalVisible});
+    setTimeout(function () {
+      self.setState({modalMessageVisible: !self.state.modalMessageVisible});
+    }, 100);
+  }
+
+  sendMessageDone(){
+    if(self.state.message){
+      this.setState({modalMessageVisible: !this.state.modalMessageVisible});
+      setTimeout(function () {
+        Alert.alert(
+          'Success',
+          '\n Your message has been sent to the Supervisor',
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          { cancelable: false }
+        )
+      }, 100);
+    }else {
+      Alert.alert(
+        'Sorry',
+        '\n Please enter your message',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+      )
+    }
+  }
+
   render() {
     return (
       <View style={Style.container} >
@@ -132,7 +196,7 @@ export default class Home extends Component<Props> {
           degrees={280}
           >
           <ActionButton.Item buttonColor='transparent' title="Help" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => console.log("notes tapped!")}>
-            <Image source={require('../images/hotel.png')} style={{width:50,height:50}} />
+            <Image source={require('../images/help.png')} style={{width:50,height:50}} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='transparent' title="My Camp" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => console.log("notes tapped!")}>
             <Image source={require('../images/camp.png')} style={{width:50,height:50}} />
@@ -141,9 +205,9 @@ export default class Home extends Component<Props> {
             <Image source={require('../images/hotel.png')} style={{width:50,height:50}} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='transparent' title="Schedule" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => console.log("notes tapped!")}>
-            <Image source={require('../images/resturant.png')} style={{width:50,height:50}} />
+            <Image source={require('../images/calendar.png')} style={{width:50,height:50}} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='transparent' title="My Bus" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => {}}>
+          <ActionButton.Item buttonColor='transparent' title="Medical History" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => {}}>
             <Image source={require('../images/hajj.png')} style={{width:50,height:50}} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='transparent' title="Hospitals" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => {}}>
@@ -153,33 +217,77 @@ export default class Home extends Component<Props> {
             <Image source={require('../images/resturant.png')} style={{width:50,height:50}} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='transparent' title="Holy Places" textStyle={Style.actionSheetTitle} textContainerStyle={Style.actionSheets} onPress={() => {}}>
-            <Image source={require('../images/hajj.png')} style={{width:50,height:50}} />
+            <Image source={require('../images/hpalces.png')} style={{width:50,height:50}} />
           </ActionButton.Item>
         </ActionButton>
-
 
         <Modal
           animationType="slide"
           transparent={true}
           visible={this.state.modalVisible}
           >
-          <View style={Style.busModalContainer}>
-            
-            <View>
-              <Image source={require('../images/resturant.png')} style={{width:50,height:50}} />
-              <Text>Supervisor : Khalid Abdulrahman</Text>
+          <View style={Style.busModalContainer} >
 
-              <Image source={require('../images/resturant.png')} style={{width:50,height:50}} />
-              <Text>Supervisor : Khalid Abdulrahman</Text>
-
-              <Image source={require('../images/resturant.png')} style={{width:50,height:50}} />
-              <Text>Supervisor : Khalid Abdulrahman</Text>
-
+            <View style={Style.titlePopButton} >
+              <Text style={Style.langTitleRev} > My Bus Supervisor </Text>
             </View>
+
+            <View style={Style.supreVisorRow} >
+              <Image source={require('../images/user.png')} style={{width:20,height:20,marginRight:8}} />
+              <Text>Khalid Abdulrahman</Text>
+            </View>
+
+            <View style={Style.supreVisorRow} >
+              <Image source={require('../images/mobile.png')} style={{width:20,height:20,marginRight:8}} />
+              <Text>+966123456789</Text>
+            </View>
+
+            <TouchableOpacity style={Style.supreVisorRow} onPress={()=>{this.sendMessage()}} >
+              <Image source={require('../images/message.png')} style={{width:20,height:20,marginRight:8}} />
+              <Text style={{color:'red'}} >Send Message</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={Style.supreVisorRow} onPress={()=>{this.showRequestResons()}} >
+              <Image source={require('../images/resturant.png')} style={{width:20,height:20,marginRight:8}} />
+              <Text style={{color:'red'}} >Request Bus Change</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity style={Style.hideButton} onPress={()=>this.showHideBusModal()} >
               <Text style={Style.langTitleRev} > hide </Text>
             </TouchableOpacity>
+
+          </View>
+        </Modal>
+
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={this.state.modalMessageVisible}
+          >
+          <View style={Style.busModalContainer} >
+
+            <View style={Style.titlePopButton} >
+              <Text style={Style.langTitleRev} > Enter your message </Text>
+            </View>
+
+            <View style={Style.supreVisorRow} >
+              <TextInput
+                style={[Style.TextAreaInput,{marginTop:90}]}
+                onChangeText={(text) => this.setState({message:text})}
+                value={this.state.message}
+                placeholder="Enter your message here"
+              />
+            </View>
+
+            <View style={Style.mainHideButton} >
+              <TouchableOpacity style={Style.seminHideButton} onPress={()=>this.sendMessageDone()} >
+                <Text style={Style.langTitleRev} > Send </Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={Style.seminHideButton} onPress={()=>this.setState({modalMessageVisible:false})} >
+                <Text style={Style.langTitleRev} > Cancel </Text>
+              </TouchableOpacity>
+            </View>
+
           </View>
         </Modal>
 
