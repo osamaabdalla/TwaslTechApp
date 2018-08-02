@@ -42,7 +42,7 @@ export default class Languages extends Component<Props> {
 
   render() {
     return (
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView bounces={false} >
         <View style={Style.container} >
           <View style={Style.logoSection} >
             <Image source={require('../images/logo.png')} style={Style.lSLogo} />
