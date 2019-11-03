@@ -1,5 +1,6 @@
-# M-011-TwaslTech :
-repo for hajjhackathon
+# TwaslTech ReactNative Mobile Application :
+
+repo for hajjhackathon in Saudi Arabia Aug 2018
 
 * this project is based on 'react-native': https://facebook.github.io/react-native/docs/getting-started *
 
